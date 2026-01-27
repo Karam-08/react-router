@@ -13,4 +13,4 @@ async function connectDB(uri){
     }
 }
 
-module.exports = connectDB
+module.exports = connectDB;

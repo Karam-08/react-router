@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {requiredAuth} = require('../middleware/authMiddleware')
+const {requireAuth} = require('../middleware/authMiddleware')
 
 const {
     getAllCourses, 
@@ -16,10 +16,12 @@ const { get } = require('mongoose')
  * We are going to apply the requireAuth to all course routes:
  * --> Every request must include a valuable JWT
  */
-router.use(requiredAuth)
+router.use(requireAuth)
 
 router.get('/', getAllCourses)
 router.get('/:id', getCourseById)
 router.post('/', createCourse)
 router.put('/:id', updateCourse)
 router.delete('/:id', deleteCourse)
+
+module.exports = router
