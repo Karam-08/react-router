@@ -22,7 +22,12 @@ function requireAuth(req, res, next){
 
         // Attach authenticated user to required for controllers to use
         // payload.sub = _id from mongodb
-        req.user = {id: payload.sub, email: payload.email, name: payload.name}
+        req.user = {
+            id: payload.sub, 
+            email: payload.email, 
+            name: payload.name
+        }
+        next()
 
     }catch(err){
         return res.status(401).json({error: "Invalid or Expired Token"})
