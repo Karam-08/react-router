@@ -1,19 +1,26 @@
-import {Link} from 'react-router-dom'
+import {react} from 'react'
+import {useAuth} from '../auth/AuthContext'
 
 const Home = () => {
+    const {isAuthed, isAdmin, user} = useAuth()
     return (
-        <div className='card'>
+        <div className="card">
             <h2>Home</h2>
-            <p className="small">This is a mini project that demonstrates React Router DOM, routes, params, nested routes, and prtected routes along with page navigation.</p>
-            <div className="row">
-                <Link to="/courses" className="link active">Browse Courses</Link>
-                <Link to="/dashboard" className="link active">Go To Dashboard</Link>
-            </div>
+            <p className="muted">Register/Login to access the courses</p>
 
-            <hr/>
-            <p className="small">   
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, repellat vitae. Fuga adipisci quas laboriosam at temporibus animi pariatur in exercitationem quibusdam, soluta aut sunt.
-            </p>
+            {isAuthed && (
+                <p className="muted">
+                    Logged in as <b>{user?.email}</b> (role: <b>{user?.role}</b>)
+                    {isAdmin ? " -- Admin dashboard available at /admin": ""}
+                </p>
+            )}
+
+
+
+            <ul>
+                <li>Users can manage only their own courses</li>
+                <li>Admins can manage all users and all courses from the dashboard</li>
+            </ul>
         </div>
     )
 }

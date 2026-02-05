@@ -10,7 +10,7 @@ import {Routes, Route, Navigate} from 'react-router-dom'
 import Home from './pages/Home'
 import Courses from './pages/Courses'
 import NotFound from './pages/NotFound'
-import Navbar from './pages/Navbar'
+import Navbar from './components/Navbar'
 
 export default function App(){
 

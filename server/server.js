@@ -2,11 +2,17 @@ require("dotenv").config();
 
 const express = require('express')
 const cors = require('cors')
+const bcrypt = require('bcryptjs')
 
 const connectDB = require('./config/db.js')
+const User = require('./models/User.js')
+
 const authRoutes = require('./routes/authRoutes.js')
 const courseRoutes = require('./routes/courseRoutes.js')
+const adminRoutes = require('./routes/adminRoutes.js')
 const errorHandler = require('./middleware/errorHandler.js')
+
+// const {connect} = require('mongoose')
 
 const app = express()
 
@@ -21,6 +27,7 @@ app.get('/api/health', (req, res) => res.json({ok: true}))
 // Routes
 app.use('/api/auth', authRoutes)
 app.use('/api/courses', courseRoutes)
+app.use('/api/admin', adminRoutes)
 
 // Error middleware goes last
 app.use(errorHandler)

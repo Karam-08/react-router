@@ -10,3 +10,13 @@ const{
     getAllCourses,
     deleteCourseAsAdmin
 } = require("../controllers/adminController")
+
+router.use(requireAuth)
+router.use(requireAdmin)
+
+router.get('/users', getAllUsers)
+router.delete('/users/:id', deleteUser)
+router.delete('/courses/:id', deleteCourseAsAdmin)
+router.get('/course', getAllCourses)
+
+module.exports = router

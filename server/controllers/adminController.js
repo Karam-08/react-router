@@ -52,3 +52,17 @@ async function getAllCourses(req, res, next){
         next(err)
     }
 }
+
+// DELETE /api/admin/courses/:id
+async function deleteCourseAsAdmin(req, res, next){
+    try{
+        const deleted = await Course.findByIdAndDelete(req.params.id)
+        if(!deleted) return res.status(404).json({error: "Course not found"})
+
+        res.json({data:deleted})
+    }catch(err){
+        next(err)
+    }
+}
+
+module.exports = {getAllCourses, deleteUser, getAllUsers, deleteCourseAsAdmin}
